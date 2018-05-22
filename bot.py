@@ -3,11 +3,16 @@ import time
 import re
 from slackclient import SlackClient
 
+from generateur import getSentence
+
+
+
 slack_cli = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))
 starterbot_id = None
 
 RTM_READ_DELAY = 1
 EXAMPLE_COMMAND = "do"
+SENTENCE_COMMAND = "eclaire-nous"
 MENTION_REGEX = "^<@(|[WU].+?)>(.*)"
 
 def parse_bot_commands(slack_events):
@@ -27,6 +32,8 @@ def handle_command(command, channel):
     response = None
     if command.startswith(EXAMPLE_COMMAND):
         response = "Ok camarade, va falloir un peu coder pour que je fasse des choses"
+    if command.startswith(SENTENCE_COMMAND):
+        response = getSentence(1)
 
     slack_cli.api_call(
             "chat.postMessage",
