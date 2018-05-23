@@ -6,12 +6,12 @@ Pour le faire tourner :
 `git clone https://github.com/GuillaumeCz/BotDeMerde.git`
 2. S'y rendre
 `cd BotDeMerde`
-### Optionnel -Debut
+#### Optionnel -Debut
 - Créer un [virtualenv](https://virtualenv.pypa.io/en/stable/). C'est plus pratique...
 `virtualenv ENV`
 - L'activer
-`source ENV/bin/activate
-`### Optionnel -Fin
+`source ENV/bin/activate`
+#### Optionnel -Fin
 3. Installer les modules necessaires
 `pip install -r requirements.txt`
 4. Créer un bot sur Slack (comme [ici](www.fullstackpython.com/blog/build-first-slack-bot-python.html)) (partie "Slack APIs and App Configuration")
