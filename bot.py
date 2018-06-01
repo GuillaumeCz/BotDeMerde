@@ -5,6 +5,7 @@ from slackclient import SlackClient
 
 from generateur import getSentence
 from excuse_de_dev import getExcuse
+from horoscope import getHoroscope
 
 slack_cli = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))
 starterbot_id = None
@@ -13,6 +14,7 @@ RTM_READ_DELAY = 1
 EXAMPLE_COMMAND = "do"
 SENTENCE_COMMAND = "eclaire-nous"
 EXCUSE_COMMAND = "excuse"
+HOROSCOPE_COMMAND = "horoscope"
 MENTION_REGEX = "^<@(|[WU].+?)>(.*)"
 
 def parse_bot_commands(slack_events):
@@ -36,6 +38,7 @@ def handle_command(command, channel):
         response = getSentence(1)
     if command.startswith(EXCUSE_COMMAND):
         response = getExcuse()
+#    if command.startswith(HOROSCOPE_COMMAND):
 
     slack_cli.api_call(
             "chat.postMessage",
@@ -44,7 +47,8 @@ def handle_command(command, channel):
             )
 
 if __name__ == "__main__":
-    if slack_cli.rtm_connect(with_team_state=False):
+#    if slack_cli.rtm_connect(with_team_state=False):
+    if False:
         print("Starter Bot connected and running")
         starterbot_id = slack_cli.api_call("auth.test")["user_id"]
         while True:
@@ -53,4 +57,7 @@ if __name__ == "__main__":
                 handle_command(command, channel)
             time.sleep(RTM_READ_DELAY)
     else:
-        print("Connection failed")
+        # print("Connection failed")
+
+        sign = "Libra"
+        print getHoroscope("Libra")
